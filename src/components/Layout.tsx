@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {/* <Slice alias="header" /> */}
-      {/* <NavBar/> */}
+      <NavBar menuLinks={[{url:'butt', title:'button'}]}/>
       {children}
       {/* <Slice alias="footer" /> */}
     </>
