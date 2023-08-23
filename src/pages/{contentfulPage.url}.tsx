@@ -70,8 +70,9 @@ export const Page = (props: PageProps) => {
         rowSpacing={3}
         style={{display: 'flex', backgroundColor: "#8e93b1"}}
         width='100%'
-        padding='0px'
+        padding='10px'
         margin='0px'
+        // marginRight='10px'
         >
             <Grid item style={{backgroundColor: "#0091d5"}} width="100%">
                 <img src={contentfulPage.image.file.url} style={{
