@@ -1,7 +1,6 @@
 import * as React from "react"
-// import "../styles.css"
+import "../styles.css"
 import { graphql } from "gatsby"
-import NavBar from "./NavBar"
 
 // taken from https://github.com/gatsbyjs/gatsby-starter-contentful-homepage-ts/blob/main/src/components/layout.tsx
 
@@ -12,10 +11,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      {/* <Slice alias="header" /> */}
-      <NavBar menuLinks={[{url:'butt', title:'button'}]}/>
       {children}
-      {/* <Slice alias="footer" /> */}
     </>
   )
 }

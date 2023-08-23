@@ -15,7 +15,16 @@ const config: GatsbyConfig = {
       "accessToken": "CUapTfvgoaQ89wpTNr5EbvhD6QSObjMCzyLPc5bhyxw",
       "spaceId": "uugliv90iwba"
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp"]
+  },
+  `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
+  "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp"]
 };
 
 export default config;
