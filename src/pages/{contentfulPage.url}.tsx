@@ -19,9 +19,6 @@ interface PageProps{
         contentfulPage: {
             url: string
             title: string
-            description: {
-                description: string
-            }
             body: {
                 raw: string
             }
@@ -105,9 +102,6 @@ query PageQuery($id: String) {
     contentfulPage(id: {eq: $id}) {
       url
       title
-      description {
-        description
-      }
       body{
         raw
       }
