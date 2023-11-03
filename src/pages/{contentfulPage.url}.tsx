@@ -20,7 +20,12 @@ interface PageProps{
             url: string
             title: string
             body: {
-                raw: string
+                raw: string,
+                references: {
+                    form: {
+                      src: string
+                    }
+                }[]
             }
             image: {
                 file: {
@@ -56,9 +61,11 @@ export const Page = (props: PageProps) => {
           [BLOCKS.HEADING_2]: (node, children: string) => <Typography variant="h2"><br/>{children}</Typography>,
           [BLOCKS.HEADING_3]: (node, children: string) => <Typography variant="h3"><br/>{children}</Typography>,
           [BLOCKS.HEADING_4]: (node, children: string) => <Typography variant="h4"><br/>{children}</Typography>,
-          [INLINES.HYPERLINK]: (node, children: string) => <Link to={node.data.uri}>{children}</Link>
+          [INLINES.HYPERLINK]: (node, children: string) => <Link to={node.data.uri}>{children}</Link>,
+          [BLOCKS.EMBEDDED_ENTRY]: (node, children: string) => <iframe src={contentfulPage.body.references[0].form.src} width={700} height={520}>Loading...</iframe>
+          //<iframe src={node.data.target.fields.form["en-US"].src} width={700} height={520}>{children}</iframe> 
         }
-      };
+      }; 
 
     return(
         <Grid
@@ -93,6 +100,9 @@ export const Page = (props: PageProps) => {
             <Grid item>
                 {documentToReactComponents(richText, options)}
             </Grid>
+            {/* <Grid item xs={12} justifyContent="center" maxWidth='75%' alignContent="center"> */}
+                {/* <iframe src={contentfulPage.body.references[0].form.src} width={700} height={520}>Loading...</iframe> */}
+            {/* </Grid> */}
         </Grid>
     )
 }
@@ -104,6 +114,13 @@ query PageQuery($id: String) {
       title
       body{
         raw
+        references{
+          ... on ContentfulVolunteerForm{
+            form{
+              src
+            }
+          }
+        }
       }
       image {
         file {
