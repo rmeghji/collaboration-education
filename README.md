@@ -12,5 +12,5 @@ The frontend was designed to customer specification using TypeScript, ReactJS, a
 Click the image to visit the live webpage!
 
 <a href="https://collaborationeducation.org/">
-  <img src="./collabedu.png"></img>
+  <img src="./collabedu.png">
 </a>
