@@ -13,7 +13,8 @@ const config: GatsbyConfig = {
     resolve: 'gatsby-source-contentful',
     options: {
       "accessToken": "CUapTfvgoaQ89wpTNr5EbvhD6QSObjMCzyLPc5bhyxw",
-      "spaceId": "uugliv90iwba"
+      "spaceId": "uugliv90iwba",
+      forceFullSync: true
     }
   },
   `gatsby-plugin-mdx`,

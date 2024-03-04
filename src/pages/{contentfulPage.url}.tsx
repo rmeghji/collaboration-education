@@ -24,7 +24,9 @@ interface PageProps{
                 references: {
                     form: {
                       src: string
-                    }
+                    },
+                    publicUrl: string
+                    description: string
                 }[]
             }
             image: {
@@ -62,7 +64,15 @@ export const Page = (props: PageProps) => {
           [BLOCKS.HEADING_3]: (node, children: string) => <Typography variant="h3"><br/>{children}</Typography>,
           [BLOCKS.HEADING_4]: (node, children: string) => <Typography variant="h4"><br/>{children}</Typography>,
           [INLINES.HYPERLINK]: (node, children: string) => <Link to={node.data.uri}>{children}</Link>,
-          [BLOCKS.EMBEDDED_ENTRY]: (node, children: string) => <iframe src={contentfulPage.body.references[0].form.src} width={700} height={520}>Loading...</iframe>
+          [BLOCKS.EMBEDDED_ENTRY]: (node, children: string) => <iframe src={contentfulPage.body.references[0].form.src} width={700} height={520}>Loading...</iframe>,
+          // [BLOCKS.EMBEDDED_ASSET]: (node, children: string) => <img src={richText.content[2].data.target.fields.file["en-US"].url}></img>
+          [BLOCKS.EMBEDDED_ASSET]: (node, children: string) => <><br/><img src={contentfulPage.body.references[0].publicUrl} height={400} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}></img>
+              <figcaption><Typography align="center" display="block" marginLeft="auto" marginRight="auto" maxWidth={350}>{contentfulPage.body.references[0].description}</Typography></figcaption>
+            </>
+          // [BLOCKS.EMBEDDED_ASSET]: (node, children: string) => {
+          //   let file = node.data.target.fields
+          //   return <img src={file['en-US'].url}></img>
+          // }
           //<iframe src={node.data.target.fields.form["en-US"].src} width={700} height={520}>{children}</iframe> 
         }
       }; 
@@ -119,6 +129,10 @@ query PageQuery($id: String) {
             form{
               src
             }
+          }
+          ... on ContentfulAsset {
+            publicUrl
+            description
           }
         }
       }
